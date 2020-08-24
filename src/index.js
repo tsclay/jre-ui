@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ExampleObject from './components/DataDisplays/ExampleObject.jsx';
 import TrialInterface from './components/DataDisplays/TrialInterface.jsx';
 import Header from './components/Header.jsx'
+import KeyRequest from './components/KeyRequest.jsx'
 // import * as serviceWorker from './serviceWorker';
 // import './styles/App.css'
 
@@ -11,12 +12,17 @@ const centerBox = {
   width: '90%'
 }
 
+const pageSpacers = {
+  marginBottom: '3em'
+}
+
 ReactDOM.render(
   <React.StrictMode>
     <Header/>
     <div style={centerBox}>
-      <ExampleObject />
-      <TrialInterface />
+      <ExampleObject marginBottom={pageSpacers} />
+      <TrialInterface marginBottom={pageSpacers} />
+      <KeyRequest marginBottom={pageSpacers} />
     </div>
   </React.StrictMode>,
   document.getElementById('root')

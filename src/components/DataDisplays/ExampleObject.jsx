@@ -5,8 +5,9 @@ import Highlight, { defaultProps} from 'prism-react-renderer'
 import styled from 'styled-components'
 import theme from "prism-react-renderer/themes/nightOwl";
 
-const ExampleObject = () => {
+const ExampleObject = (props) => {
   const [episodes, setEpisodes] = useState([])
+  const {marginBottom} = props
 
   const fetchEpisodes = async () => {
     const response = await fetch('/api/v1/example')
@@ -45,7 +46,7 @@ const LineContent = styled.span`
 `;
 
   return (
-    <div className="App">
+    <div className="App" style={marginBottom}>
       <p>Returned data will look like this</p>
       {episodes.map(e => (
          <Highlight {...defaultProps} theme={theme} code={prettier.format(JSON.stringify(e), {parser: 'json', plugins: [parserJson], printWidth: 90}).trim()} language="json">

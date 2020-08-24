@@ -1,9 +1,13 @@
 import React from 'react'
 
-const KeyRequest = () => {
+const KeyRequest = (props) => {
+    const {marginBottom} = props
   return (
-    <div>
-      
+    <div style={marginBottom}>
+      <p>
+        Want to interact with this API?
+      </p>
+      <p>Request an API Key below!</p>
     </div>
   )
 }

@@ -5,9 +5,10 @@ import Highlight, { defaultProps} from 'prism-react-renderer'
 import styled from 'styled-components'
 import theme from "prism-react-renderer/themes/nightOwl";
 
-const TrialInterface = () => {
+const TrialInterface = (props) => {
   const [episodes, setEpisodes] = useState([])
   const [input, setInput] = useState('/api/v1/example')
+    const {marginBottom} = props
 
   const fetchEpisodes = async (url = '/api/v1/example') => {
     const response = await fetch(url)
@@ -46,7 +47,7 @@ const LineContent = styled.span`
 `;
 
   return (
-    <div className="App">
+    <div className="App" style={marginBottom}>
       <h3>Try it out!</h3>
       <form onSubmit={getQueriedData}>
         <input type="text" onChange={(e) => {
