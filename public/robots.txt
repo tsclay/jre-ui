@@ -1,3 +1,4 @@
-# https://www.robotstxt.org/robotstxt.html
+# No reason to be scraping this site
+# Just get an API key :)
 User-agent: *
-Disallow:
+Disallow: /*
