@@ -1,9 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ExampleObject from './components/DataDisplays/ExampleObject.jsx'
-import TrialInterface from './components/DataDisplays/TrialInterface.jsx'
-import Header from './components/Header.jsx'
-import KeyRequest from './components/KeyRequest.jsx'
+import ExampleObject from './components/ExampleObject'
+import TrialInterface from './components/TrialInterface'
+import Header from './components/Header'
+import KeyRequest from './components/KeyRequest'
+import RouteOptions from './components/RouteOptions'
+import ErrorReporting from './components/ErrorReporting'
 // import * as serviceWorker from './serviceWorker';
 // import './styles/App.css'
 
@@ -21,8 +23,10 @@ ReactDOM.render(
     <Header />
     <div style={centerBox}>
       <ExampleObject marginBottom={pageSpacers} />
+      <RouteOptions marginBottom={pageSpacers} />
       <TrialInterface marginBottom={pageSpacers} />
       <KeyRequest marginBottom={pageSpacers} />
+      <ErrorReporting marginBottom={pageSpacers} />
     </div>
   </React.StrictMode>,
   document.getElementById('root')
