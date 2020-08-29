@@ -22,13 +22,13 @@ p {
 }
 
 div.basic-code-blocks {
-  width: 50%;
+  width: 100%;
   margin-bottom: 2em;
 }
 
 div.basic-code-blocks > code {
   display: block;
-  padding: 1em;
+  padding: 1em 0 0 1em;
   color: rgb(214, 222, 235);
   background-color: rgb(1, 22, 39);
   width: 100%;
