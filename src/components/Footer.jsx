@@ -1,25 +1,51 @@
 import React from 'react'
+import { Box, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
-const Footer = () => {
-  const footerStyle = {
+const useStyles = makeStyles({
+  footer: {
     color: '#fff',
     backgroundColor: '#3f51b5',
-    width: '90%',
-    paddingLeft: '3em',
-    fontFamily: 'Roboto'
+    textAlign: 'center',
+    height: '125px',
+    paddingTop: '2em'
   }
+})
+
+const Footer = () => {
+  const styles = useStyles()
+
   return (
-    <div style={footerStyle}>
-      <p>The JRE-API and this website was created by Tim Clay.</p>
-      <p>
+    <Box className={styles.footer}>
+      <Typography>
+        The JRE-API and this website was created by Tim Clay.
+      </Typography>
+      <Typography>
         This website and the JRE-API is not affiliated with Joe Rogan and/or the
         Joe Rogan Experience Podcast.
-      </p>
-      <p>
-        All data show here and by the JRE-API is publicly available at
-        http://podcasts.joerogan.net/.
-      </p>
-    </div>
+      </Typography>
+      <Typography>
+        All data shown here and by the JRE-API is publicly available at the
+        <a
+          href="http://podcasts.joerogan.net/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          JRE Podcast website
+        </a>
+{' '}
+        and at the
+{' '}
+        <a
+          href="https://www.youtube.com/user/PowerfulJRE"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          PowerfulJRE YouTube channel
+        </a>
+        .
+      </Typography>
+    </Box>
   )
 }
 
