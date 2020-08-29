@@ -3,14 +3,13 @@ import {
   Button,
   Box,
   FormControl,
-  FormHelperText,
   Input,
-  FormLabel,
-  InputLabel
+  InputLabel,
+  Typography
 } from '@material-ui/core'
 
 const KeyRequest = (props) => {
-  const { marginBottom } = props
+  const { marginBottom, typographySpacer } = props
   const [data, setData] = useState({})
 
   const handleInputs = (e) => {
@@ -26,12 +25,14 @@ const KeyRequest = (props) => {
   return (
     <div style={marginBottom} id="request-api-key">
       <h2>Request API Key</h2>
-      <p>An API Key is required to access the /all and queried routes.</p>
-      <p>You should receive your key by email shortly after requesting.</p>
-      <p>
+      <Typography style={typographySpacer}>
+        An API Key is required to access the /all and queried routes. You should
+        receive your key by email shortly after requesting.
+      </Typography>
+      <Typography style={typographySpacer}>
         If you don&apos;t receive the email, please contact
         keymaster.jre.api@gmail.com for an API Key.
-      </p>
+      </Typography>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Info</legend>
