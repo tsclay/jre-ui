@@ -11,23 +11,42 @@ import Footer from './components/Footer'
 // import './styles/App.css'
 
 const centerBox = {
-  margin: '3em auto',
-  width: '90%'
+  margin: '3rem auto',
+  width: '70%'
 }
 
 const pageSpacers = {
-  marginBottom: '3em'
+  marginBottom: '3rem'
+}
+
+const typographySpacer = {
+  marginBottom: '1.25rem'
 }
 
 ReactDOM.render(
   <React.StrictMode>
     <Header />
     <div style={centerBox}>
-      <ExampleObject marginBottom={pageSpacers} />
-      <RouteOptions marginBottom={pageSpacers} />
-      <TryInterface marginBottom={pageSpacers} />
-      <KeyRequest marginBottom={pageSpacers} />
-      <ErrorReporting marginBottom={pageSpacers} />
+      <ExampleObject
+        marginBottom={pageSpacers}
+        typographySpacer={typographySpacer}
+      />
+      <RouteOptions
+        marginBottom={pageSpacers}
+        typographySpacer={typographySpacer}
+      />
+      <TryInterface
+        marginBottom={pageSpacers}
+        typographySpacer={typographySpacer}
+      />
+      <KeyRequest
+        marginBottom={pageSpacers}
+        typographySpacer={typographySpacer}
+      />
+      <ErrorReporting
+        marginBottom={pageSpacers}
+        typographySpacer={typographySpacer}
+      />
     </div>
     <Footer />
   </React.StrictMode>,
