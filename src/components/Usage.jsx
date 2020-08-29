@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, {useState} from 'react'
 import { Box } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles'
+import { withStyles, makeStyles } from '@material-ui/core/styles'
 import MuiAccordion from '@material-ui/core/Accordion'
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary'
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails'
@@ -26,7 +26,7 @@ const Accordion = withStyles({
 
 const AccordionSummary = withStyles({
   root: {
-    backgroundColor: 'rgba(0, 0, 0, .03)',
+    backgroundColor: 'rgba(0, 0, 0, .08)',
     borderBottom: '1px solid rgba(0, 0, 0, .125)',
     marginBottom: -1,
     minHeight: 56,
@@ -48,9 +48,23 @@ const AccordionDetails = withStyles((theme) => ({
   }
 }))(MuiAccordionDetails)
 
+const useStyles = makeStyles({
+  inlineCode: {
+    color: 'rgb(0, 0, 0)',
+    backgroundColor: '#c3c3c3',
+    fontFamily: 'Anonymous-Pro, monospace',
+    width: '45%'
+  },
+  getHTTP: {
+    color: 'rgb(0, 0, 0)',
+    backgroundColor: '#c3c3c3',
+    fontFamily: 'Anonymous-Pro, monospace',
+  }
+})
+
 const RouteOptions = (props) => {
-  const { marginBottom } = props
-  const splitWidth = { width: '45%' }
+  const { marginBottom, typographySpacer } = props
+  const styles = useStyles()
   const [expanded, setExpanded] = useState('panel5')
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -60,16 +74,19 @@ const RouteOptions = (props) => {
   return (
     <div style={marginBottom} id="usage">
       <h2>Usage</h2>
-      <p>The base URL for the API is <span className="inline-code"><code>/api/v1/jre</code></span></p>
-      <p>
+      <Typography style={typographySpacer}>The base URL for the API is <span className="inline-code"><code>/api/v1/jre</code></span></Typography>
+      <Typography style={typographySpacer}>An API Key is required to use these routes. </Typography>
+      <Typography style={typographySpacer}>
         The way to filter episodes is by setting property:value pairs as URL
         queries:
-      </p>
+      </Typography>
       <div className="basic-code-blocks">
         <code>
           <span style={{display: "block", paddingBottom: '0.25em'}}>date=(asc || desc)</span>
           <br />
           <span style={{display: "block", paddingBottom: '0.25em'}}>episode_id=(int > 0 || null)</span>
+          <br />
+          <span style={{display: "block", paddingBottom: '0.25em'}}>limit=(int > 0)</span>
           <br />
           <span style={{display: "block", paddingBottom: '0.25em'}}>isFC=(Boolean)</span>
           <br />
@@ -78,10 +95,13 @@ const RouteOptions = (props) => {
           <span style={{display: "block", paddingBottom: '0.25em'}}>isJRQE=(Boolean)</span>
         </code>
       </div>
-      <p style={{marginBottom: '3em'}}>
+      <Typography style={typographySpacer}>
+        The number of items returned is limited to 100 by default. Specify the limit explicitly to change this. The exception to this is when requesting all JRE episodes. Items are sorted by date descending order by default.
+      </Typography>
+      <Typography style={typographySpacer}>
         <strong>Important:</strong> Only specify one of the Boolean properties if doing so. Specifying multiple as true will return no episodes. This is because there are no episodes marked as part of multiple types.
-      </p>
-      <p>Look at the following for more info on these queries:</p>
+      </Typography>
+      <Typography style={typographySpacer}>Look at the following for more info on these queries:</Typography>
       <Accordion
         TransitionProps={{ unmountOnExit: true }}
         square
@@ -89,24 +109,20 @@ const RouteOptions = (props) => {
         onChange={handleChange('panel5')}
       >
         <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-          <Box display="flex" justifyContent="space-between" width="100%">
-            <span style={splitWidth}>
-              <span className="inline-code">GET</span>{" "}
-              <span>All Episodes</span>
-            </span>
-            <input
-              style={splitWidth}
-              type="text"
-              value="/api/v1/jre/all"
-              readOnly
-            />
+          <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
+            <Box display="flex" justifyContent="start" alignItems="start">
+              <Typography component="span" className={styles.getHTTP}>GET</Typography>{" "}
+              <Typography style={{marginLeft: '1em'}} component="span">All Episodes</Typography>
+            </Box>
+            <Typography className={styles.inlineCode}>
+              /api/v1/jre/all
+            </Typography>
           </Box>
         </AccordionSummary>
         <AccordionDetails>
           <Typography component="body2">
             Get all episodes of the JRE Podcast, sorting by date ascending 
-            or descending (orders descending by default). This route is only 
-            available with an API Key (form below), and is placed behind 
+            or descending (orders descending by default). This route is placed behind 
             rate-limiting middleware. <em>Call this route efficiently because 
             subsequent requests will take significantly longer to resolve.</em>
           </Typography>
@@ -120,16 +136,13 @@ const RouteOptions = (props) => {
       >
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
           <Box display="flex" justifyContent="space-between" width="100%">
-            <span style={splitWidth}>
-              <span className="inline-code">GET</span>{" "}
-              <span>MMA Shows</span>
-            </span>
-            <input
-              style={splitWidth}
-              type="text"
-              value="/api/v1/jre?isMMA=true&date=desc"
-              readOnly
-            />
+            <Box display="flex" justifyContent="start" alignItems="start">
+              <Typography component="span" className={styles.getHTTP}>GET</Typography>{" "}
+              <Typography style={{marginLeft: '1em'}} component="span">MMA Shows</Typography>
+            </Box>
+            <Typography className={styles.inlineCode}>
+              /api/v1/jre?isMMA=true&date=desc
+            </Typography>
           </Box>
         </AccordionSummary>
         <AccordionDetails>
@@ -147,21 +160,18 @@ const RouteOptions = (props) => {
       >
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
           <Box display="flex" justifyContent="space-between" width="100%">
-            <span style={splitWidth}>
-              <span className="inline-code">GET</span>{" "}
-              <span>Fight Companion</span>
-            </span>
-            <input
-              style={splitWidth}
-              type="text"
-              value="/api/v1/jre?isFC=true&date=desc"
-              readOnly
-            />
+            <Box display="flex" justifyContent="start" alignItems="start">
+              <Typography component="span" className={styles.getHTTP}>GET</Typography>{" "}
+              <Typography style={{marginLeft: '1em'}} component="span">Fight Companion</Typography>
+            </Box>
+            <Typography className={styles.inlineCode}>
+              /api/v1/jre>isFC=true&date=desc
+            </Typography>
           </Box>
         </AccordionSummary>
         <AccordionDetails>
           <Typography component="body2">
-            Get only Fight Companion episodes, and show the most recent ones first. To date, there are 54 episodes.
+            Get only Fight Companion episodes, and show the most recent ones first. To date, there are 59 episodes.
           </Typography>
         </AccordionDetails>
       </Accordion>
@@ -173,16 +183,13 @@ const RouteOptions = (props) => {
       >
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
           <Box display="flex" justifyContent="space-between" width="100%">
-            <span style={splitWidth}>
-             <span className="inline-code">GET</span>{" "}
-              <span>Joe Rogan Questions Everything (JRQE)</span>
-            </span>
-            <input
-              style={splitWidth}
-              type="text"
-              value="/api/v1/jre?isJRQE=true&date=desc"
-              readOnly
-            />
+            <Box display="flex" justifyContent="start" alignItems="start">
+              <Typography component="span" className={styles.getHTTP}>GET</Typography>{" "}
+              <Typography style={{marginLeft: '1em'}} component="span">Joe Rogan Questions Everyting (JRQE)</Typography>
+            </Box>
+            <Typography className={styles.inlineCode}>
+              /api/v1/jre?isJRQE=true&date=desc
+            </Typography>
           </Box>
         </AccordionSummary>
         <AccordionDetails>
@@ -202,16 +209,13 @@ const RouteOptions = (props) => {
       >
         <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
           <Box display="flex" justifyContent="space-between" width="100%">
-            <span style={splitWidth}>
-              <span className="inline-code">GET</span>{" "}
-              <span>Out of Studio</span>
-            </span>
-            <input
-              style={splitWidth}
-              type="text"
-              value="/api/v1/jre?episode_id=null&date=desc"
-              readOnly
-            />
+            <Box display="flex" justifyContent="start" alignItems="start">
+              <Typography component="span" className={styles.getHTTP}>GET</Typography>{" "}
+              <Typography style={{marginLeft: '1em'}} component="span">Out of Studio</Typography>
+            </Box>
+            <Typography className={styles.inlineCode}>
+              /api/v1/jre?episode_id=null&date=desc
+            </Typography>
           </Box>
         </AccordionSummary>
         <AccordionDetails>
