@@ -10,7 +10,7 @@ const ExampleObject = (props) => {
   const { marginBottom } = props
 
   const fetchEpisodes = async () => {
-    const response = await fetch('/api/v1/example')
+    const response = await fetch('/api/v1/jre/example')
     const data = await response.json()
     setEpisodes(data)
   }
@@ -25,7 +25,7 @@ const ExampleObject = (props) => {
     margin: 1em 0;
     padding: 0.5em;
     overflow: scroll;
-    width: 75%;
+    width: 100%;
   `
 
   const Line = styled.div`
