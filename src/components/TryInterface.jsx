@@ -4,16 +4,41 @@ import parserJson from 'prettier/parser-babel'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import styled from 'styled-components'
 import theme from 'prism-react-renderer/themes/nightOwl'
+import {
+  Typography,
+  TextField,
+  Box,
+  Button,
+  CircularProgress
+} from '@material-ui/core'
+
+let prevUrl
 
 const TryInterface = (props) => {
-  const [episodes, setEpisodes] = useState([])
-  const [input, setInput] = useState('/api/v1/example')
-  const { marginBottom } = props
+  const [episodes, setEpisodes] = useState('')
+  const [input, setInput] = useState({
+    url: '/api/v1/jre/example',
+    apiKey: 'DemoUser'
+  })
+  const [isLoading, setIsLoading] = useState(false)
+  const { marginBottom, typographySpacer } = props
 
-  const fetchEpisodes = async (url = '/api/v1/example') => {
-    const response = await fetch(url)
+  const fetchEpisodes = async (params) => {
+    const { url, apiKey } = params
+    if (url === prevUrl) return
+    await setIsLoading(true)
+    const response = await fetch(url, { headers: { 'X-API-KEY': apiKey } })
     const data = await response.json()
-    setEpisodes(data)
+    const prettiedData = await prettier
+      .format(JSON.stringify(data), {
+        parser: 'json',
+        plugins: [parserJson],
+        printWidth: 90
+      })
+      .trim()
+    prevUrl = url
+    await setIsLoading(false)
+    await setEpisodes(prettiedData)
   }
 
   const getQueriedData = async (e) => {
@@ -23,10 +48,12 @@ const TryInterface = (props) => {
 
   const Pre = styled.pre`
     text-align: left;
-    margin: 1em 0;
+    margin: 1em auto;
     padding: 0.5em;
     overflow: scroll;
     width: 75%;
+    height: 240px;
+    overflow: auto;
   `
 
   const Line = styled.div`
@@ -45,37 +72,109 @@ const TryInterface = (props) => {
     display: table-cell;
   `
 
+  const inlineCode = {
+    inlineCode: {
+      color: 'rgb(0, 0, 0)',
+      backgroundColor: '#c3c3c3',
+      fontFamily: 'Anonymous-Pro, monospace',
+      width: '45%'
+    }
+  }
+
   return (
     <div className="App" style={marginBottom} id="try-it">
       <h2>Try It!</h2>
-      <p>
-        This API requires an API Key for access. A demo key is used below; only
-        1 data item will be returned by each request.
-      </p>
-      <p>
-        Request an API Key below to get more items returned to your requests.
-      </p>
-      <form onSubmit={getQueriedData}>
-        <input
-          type="text"
-          onChange={(e) => {
-            setInput(e.target.value)
-          }}
-          defaultValue={input}
-        />
-        <button type="submit">Fetch!</button>
+      <Typography style={typographySpacer}>
+        This API requires an API Key for access. The API Key should be sent as a
+        request header with property{' '}
+        <Typography component="span" style={inlineCode.inlineCode}>
+          X-API-KEY
+        </Typography>
+        {'. '}
+A demo key is used below; only 1 data item will be returned by
+        each request with the demo key.
+</Typography>
+      <Typography style={typographySpacer}>
+        If you have your own key, replace the value below with yours. Request an
+        API Key below to get more items returned to your requests.
+      </Typography>
+      <form
+        onSubmit={getQueriedData}
+        style={{ width: '80%', margin: '0 auto 2em auto' }}
+      >
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          style={{ marginBottom: '1.25rem' }}
+        >
+          <Typography style={{ fontFamily: 'Anonymous-Pro, monospace' }}>
+            X-API-KEY
+          </Typography>
+          <TextField
+            style={{ width: '70%' }}
+            id="apiKey"
+            label="X-API-KEY"
+            defaultValue={input.apiKey}
+            helperText="Replace with your key"
+            variant="filled"
+            onChange={(e) => {
+              input[e.target.id] = e.target.value
+              setInput(input)
+            }}
+          />
+        </Box>
+        <Box
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
+          style={{ marginBottom: '1.25rem' }}
+        >
+          <Typography color="initial">Request Route</Typography>
+          <TextField
+            style={{ width: '70%' }}
+            id="url"
+            label="Request Route"
+            defaultValue={input.url}
+            helperText="Route with queries"
+            variant="filled"
+            type="text"
+            onChange={(e) => {
+              input[e.target.id] = e.target.value
+              setInput(input)
+            }}
+          />
+        </Box>
+        <Button
+          style={{ width: '100%' }}
+          type="submit"
+          variant="contained"
+          color="primary"
+        >
+          Fetch!
+        </Button>
       </form>
-      {episodes.map((e) => (
+      {isLoading ? (
+        <div
+          style={{
+            display: 'flex',
+            margin: '1em auto',
+            width: '75%',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontFamily: 'Anonymous Pro, monospace',
+            minHeight: '240px',
+            color: 'rgb(214, 222, 235)',
+            backgroundColor: 'rgb(1, 22, 39)'
+          }}
+        >
+          <CircularProgress />
+        </div>
+      ) : episodes.length > 0 ? (
         <Highlight
           {...defaultProps}
           theme={theme}
-          code={prettier
-            .format(JSON.stringify(e), {
-              parser: 'json',
-              plugins: [parserJson],
-              printWidth: 90
-            })
-            .trim()}
+          code={episodes}
           language="json"
         >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
@@ -93,7 +192,23 @@ const TryInterface = (props) => {
             </Pre>
           )}
         </Highlight>
-      ))}
+      ) : (
+        <div
+          style={{
+            display: 'flex',
+            width: '75%',
+            margin: '1em auto',
+            justifyContent: 'center',
+            alignItems: 'center',
+            fontFamily: 'Anonymous Pro, monospace',
+            minHeight: '240px',
+            color: 'rgb(214, 222, 235)',
+            backgroundColor: 'rgb(1, 22, 39)'
+          }}
+        >
+          Awaiting your request.
+        </div>
+      )}
     </div>
   )
 }
