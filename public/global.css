@@ -21,10 +21,6 @@ p {
   padding: 0;
 }
 
-body > * {
-  margin-bottom: 1em;
-}
-
 div.basic-code-blocks {
   width: 50%;
   margin-bottom: 2em;
