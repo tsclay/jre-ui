@@ -11,14 +11,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
+h2 {
+  margin: 0 0 1.5em 0;
+  padding: 0;
+}
+
 p {
-  margin: 0;
+  margin: 0 0 1em 0;
   padding: 0;
 }
 
@@ -26,18 +25,22 @@ body > * {
   margin-bottom: 1em;
 }
 
-/* pre,
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-  background-color: rgb(70, 70, 70);
-  color: rgb(190, 190, 190);
-  overflow-x: auto;
-  white-space: pre-wrap;
-  white-space: -moz-pre-wrap;
-  white-space: -pre-wrap;
-  white-space: -o-pre-wrap;
-  word-wrap: break-word;
-} */
+div.basic-code-blocks {
+  width: 50%;
+  margin-bottom: 2em;
+}
 
+div.basic-code-blocks > code {
+  display: block;
+  padding: 1em;
+  color: rgb(214, 222, 235);
+  background-color: rgb(1, 22, 39);
+  width: 100%;
+  min-height: 50px;
+}
 
+.inline-code {
+  color: rgb(0, 0, 0);
+  background-color: #c3c3c3;
+  font-family: 'Anonymous-Pro', monospace;
+}
