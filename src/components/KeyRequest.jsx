@@ -24,9 +24,14 @@ const KeyRequest = (props) => {
   }
 
   return (
-    <div style={marginBottom}>
-      <p>Want to interact with this API?</p>
-      <p>Request an API Key below!</p>
+    <div style={marginBottom} id="request-api-key">
+      <h2>Request API Key</h2>
+      <p>An API Key is required to access the /all and queried routes.</p>
+      <p>You should receive your key by email shortly after requesting.</p>
+      <p>
+        If you don&apos;t receive the email, please contact
+        keymaster.jre.api@gmail.com for an API Key.
+      </p>
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Info</legend>

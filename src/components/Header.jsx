@@ -93,26 +93,38 @@ const Header = () => {
             />
           </div> */}
           <Button
+            type="button"
             className={classes.navLinks}
             variant="contained"
             color="primary"
-            href="#contained-buttons"
+            href="#usage"
           >
             Usage
           </Button>
           <Button
+            type="button"
             className={classes.navLinks}
             variant="contained"
             color="primary"
-            href="#contained-buttons"
+            href="#try-it"
+          >
+            Try It
+          </Button>
+          <Button
+            type="button"
+            className={classes.navLinks}
+            variant="contained"
+            color="primary"
+            href="#request-api-key"
           >
             Request API Key
           </Button>
           <Button
+            type="button"
             className={classes.navLinks}
             variant="contained"
             color="primary"
-            href="#contained-buttons"
+            href="#report-error"
           >
             Report Error
           </Button>

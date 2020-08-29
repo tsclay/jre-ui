@@ -1,24 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import prettier from 'prettier/standalone'
 import parserJson from 'prettier/parser-babel'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import styled from 'styled-components'
 import theme from 'prism-react-renderer/themes/nightOwl'
 
-const ExampleObject = (props) => {
+const TryInterface = (props) => {
   const [episodes, setEpisodes] = useState([])
+  const [input, setInput] = useState('/api/v1/example')
   const { marginBottom } = props
 
-  const fetchEpisodes = async () => {
-    const response = await fetch('/api/v1/example')
+  const fetchEpisodes = async (url = '/api/v1/example') => {
+    const response = await fetch(url)
     const data = await response.json()
     setEpisodes(data)
   }
 
-  useEffect(() => {
-    fetchEpisodes()
-    console.log('fetched episodes')
-  }, [])
+  const getQueriedData = async (e) => {
+    await e.preventDefault()
+    await fetchEpisodes(input)
+  }
 
   const Pre = styled.pre`
     text-align: left;
@@ -45,8 +46,25 @@ const ExampleObject = (props) => {
   `
 
   return (
-    <div className="App" style={marginBottom}>
-      <h2>The most recent episode of the JRE Podcast</h2>
+    <div className="App" style={marginBottom} id="try-it">
+      <h2>Try It!</h2>
+      <p>
+        This API requires an API Key for access. A demo key is used below; only
+        1 data item will be returned by each request.
+      </p>
+      <p>
+        Request an API Key below to get more items returned to your requests.
+      </p>
+      <form onSubmit={getQueriedData}>
+        <input
+          type="text"
+          onChange={(e) => {
+            setInput(e.target.value)
+          }}
+          defaultValue={input}
+        />
+        <button type="submit">Fetch!</button>
+      </form>
       {episodes.map((e) => (
         <Highlight
           {...defaultProps}
@@ -80,4 +98,4 @@ const ExampleObject = (props) => {
   )
 }
 
-export default ExampleObject
+export default TryInterface

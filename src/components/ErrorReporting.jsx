@@ -3,7 +3,8 @@ import React from 'react'
 const ErrorReporting = (props) => {
   const { marginBottom } = props
   return (
-    <div style={marginBottom}>
+    <div style={marginBottom} id="report-error">
+      <h2>Error Reporting</h2>
       <p>Found a bug or notice incorrect data?</p>
       <p>
         Submit an issue
