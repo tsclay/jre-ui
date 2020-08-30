@@ -5,7 +5,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles'
 import MuiAccordion from '@material-ui/core/Accordion'
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary'
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails'
-import {Typography, Hidden} from '@material-ui/core/'
+import {Typography, Hidden, useMediaQuery } from '@material-ui/core/'
 
 const Accordion = withStyles({
   root: {
@@ -51,20 +51,17 @@ const AccordionDetails = withStyles((theme) => ({
 
 const useStyles = makeStyles({
   inlineCode: {
-    color: 'rgb(0, 0, 0)',
-    backgroundColor: '#c3c3c3',
-    fontFamily: 'Anonymous-Pro, monospace',
-    width: '45%'
+    fontFamily: 'Anonymous-Pro, monospace'
   },
   getHTTP: {
-    color: 'rgb(0, 0, 0)',
-    fontFamily: 'Anonymous-Pro, monospace',
+    fontFamily: 'Anonymous-Pro, monospace'
   }
 })
 
 const RouteOptions = (props) => {
   const { marginBottom, typographySpacer } = props
   const styles = useStyles()
+  const matches = useMediaQuery('(min-width:750px)')
   const [expanded, setExpanded] = useState('panel5')
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -73,9 +70,6 @@ const RouteOptions = (props) => {
 
   return (
     <>
-    {/* <Hidden>
-      <div style={{height: '3rem'}} />
-    </Hidden> */}
     <div style={{marginTop: '2rem'}}>
       <h2>Usage</h2>
       <Typography style={typographySpacer}>The base URL for the API is <span className="inline-code"><code>/api/v1/jre</code></span></Typography>
@@ -113,7 +107,7 @@ const RouteOptions = (props) => {
         onChange={handleChange('panel5')}
       >
         <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-          <Box display="flex" alignItems="center" justifyContent="space-between" width="100%">
+          <Box display="flex"  flexDirection={matches ? "row" : "column"} justifyContent="space-between" width="100%">
             <Box display="flex" justifyContent="start" alignItems="start">
               <Typography component="span" className={styles.getHTTP}>GET</Typography>{" "}
               <Typography style={{marginLeft: '1em'}} component="span">All Episodes</Typography>
@@ -139,7 +133,7 @@ const RouteOptions = (props) => {
         onChange={handleChange('panel1')}
       >
         <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Box display="flex" justifyContent="space-between" width="100%">
+          <Box display="flex"  flexDirection={matches ? "row" : "column"} justifyContent="space-between" width="100%">
             <Box display="flex" justifyContent="start" alignItems="start">
               <Typography component="span" className={styles.getHTTP}>GET</Typography>{" "}
               <Typography style={{marginLeft: '1em'}} component="span">MMA Shows</Typography>
@@ -163,7 +157,7 @@ const RouteOptions = (props) => {
         onChange={handleChange('panel2')}
       >
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Box display="flex" justifyContent="space-between" width="100%">
+          <Box display="flex"  flexDirection={matches ? "row" : "column"} justifyContent="space-between" width="100%">
             <Box display="flex" justifyContent="start" alignItems="start">
               <Typography component="span" className={styles.getHTTP}>GET</Typography>{" "}
               <Typography style={{marginLeft: '1em'}} component="span">Fight Companion</Typography>
@@ -186,7 +180,7 @@ const RouteOptions = (props) => {
         onChange={handleChange('panel3')}
       >
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Box display="flex" justifyContent="space-between" width="100%">
+          <Box display="flex"  flexDirection={matches ? "row" : "column"} justifyContent="space-between" width="100%">
             <Box display="flex" justifyContent="start" alignItems="start">
               <Typography component="span" className={styles.getHTTP}>GET</Typography>{" "}
               <Typography style={{marginLeft: '1em'}} component="span">Joe Rogan Questions Everyting (JRQE)</Typography>
@@ -211,7 +205,7 @@ const RouteOptions = (props) => {
         onChange={handleChange('panel4')}
       >
         <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-          <Box display="flex" justifyContent="space-between" width="100%">
+          <Box display="flex"  flexDirection={matches ? "row" : "column"} justifyContent="space-between" width="100%">
             <Box display="flex" justifyContent="start" alignItems="start">
               <Typography component="span" className={styles.getHTTP}>GET</Typography>{" "}
               <Typography style={{marginLeft: '1em'}} component="span">Out of Studio</Typography>
