@@ -4,8 +4,8 @@ import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles({
   footer: {
-    color: '#fff',
-    backgroundColor: '#3f51b5',
+    color: '#040407',
+    backgroundColor: '#ce7d47',
     textAlign: 'center',
     height: '125px',
     paddingTop: '2em'

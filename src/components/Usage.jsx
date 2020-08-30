@@ -5,7 +5,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles'
 import MuiAccordion from '@material-ui/core/Accordion'
 import MuiAccordionSummary from '@material-ui/core/AccordionSummary'
 import MuiAccordionDetails from '@material-ui/core/AccordionDetails'
-import Typography from '@material-ui/core/Typography'
+import {Typography, Hidden} from '@material-ui/core/'
 
 const Accordion = withStyles({
   root: {
@@ -26,7 +26,7 @@ const Accordion = withStyles({
 
 const AccordionSummary = withStyles({
   root: {
-    backgroundColor: 'rgba(0, 0, 0, .08)',
+    backgroundColor: 'rgba(61, 61, 61, 0.3)',
     borderBottom: '1px solid rgba(0, 0, 0, .125)',
     marginBottom: -1,
     minHeight: 56,
@@ -44,7 +44,8 @@ const AccordionSummary = withStyles({
 
 const AccordionDetails = withStyles((theme) => ({
   root: {
-    padding: theme.spacing(2)
+    padding: theme.spacing(2),
+    backgroundColor: '#E8F0FF'
   }
 }))(MuiAccordionDetails)
 
@@ -57,7 +58,6 @@ const useStyles = makeStyles({
   },
   getHTTP: {
     color: 'rgb(0, 0, 0)',
-    backgroundColor: '#c3c3c3',
     fontFamily: 'Anonymous-Pro, monospace',
   }
 })
@@ -72,7 +72,11 @@ const RouteOptions = (props) => {
   }
 
   return (
-    <div style={marginBottom} id="usage">
+    <>
+    {/* <Hidden>
+      <div style={{height: '3rem'}} />
+    </Hidden> */}
+    <div style={{marginTop: '2rem'}}>
       <h2>Usage</h2>
       <Typography style={typographySpacer}>The base URL for the API is <span className="inline-code"><code>/api/v1/jre</code></span></Typography>
       <Typography style={typographySpacer}>An API Key is required to use these routes. </Typography>
@@ -200,7 +204,6 @@ const RouteOptions = (props) => {
           </Typography>
         </AccordionDetails>
       </Accordion>
-
       <Accordion
         TransitionProps={{ unmountOnExit: true }}
         square
@@ -228,6 +231,10 @@ const RouteOptions = (props) => {
         </AccordionDetails>
       </Accordion>
     </div>
+        <Hidden>
+        <div id="try-it" style={{ height: '3rem' }} />
+      </Hidden>
+    </>
   )
 }
 

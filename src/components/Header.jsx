@@ -3,9 +3,13 @@ import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 import { makeStyles, fade } from '@material-ui/core/styles'
-import Box from '@material-ui/core/Box'
+import { Box } from '@material-ui/core/'
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    color: '#040407',
+    backgroundColor: '#ce7d47'
+  },
   grow: {
     flexGrow: 1
   },
@@ -68,7 +72,11 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   navLinks: {
-    marginLeft: theme.spacing(2)
+    marginLeft: theme.spacing(2),
+    backgroundColor: '#3d3d3d',
+    '&:hover': {
+      backgroundColor: fade('#333333', 1)
+    }
   }
 }))
 
@@ -76,9 +84,16 @@ const Header = () => {
   const classes = useStyles()
   return (
     <>
-      <AppBar position="fixed">
-        <Toolbar display="flex">
-          <Box flexGrow={1}>JRE API</Box>
+      <AppBar
+        position="fixed"
+        classes={{
+          root: classes.root
+        }}
+      >
+        <Toolbar display="flex" alignItems="center">
+          <Box component="h3" flexGrow={1}>
+            JRE API
+          </Box>
           {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
@@ -139,7 +154,6 @@ const Header = () => {
           </Button>
         </Toolbar>
       </AppBar>
-      <Toolbar />
     </>
   )
 }

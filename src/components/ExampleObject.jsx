@@ -4,6 +4,7 @@ import parserJson from 'prettier/parser-babel'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import styled from 'styled-components'
 import theme from 'prism-react-renderer/themes/nightOwl'
+import { Hidden } from '@material-ui/core'
 
 const ExampleObject = (props) => {
   const [episodes, setEpisodes] = useState([])
@@ -45,14 +46,14 @@ const ExampleObject = (props) => {
   `
 
   return (
-    <div className="App" style={marginBottom}>
+    <div className="App" style={{ marginTop: '2rem' }}>
       <h2>The most recent episode of the JRE Podcast</h2>
-      {episodes.map((e) => (
+      {episodes ? (
         <Highlight
           {...defaultProps}
           theme={theme}
           code={prettier
-            .format(JSON.stringify(e), {
+            .format(JSON.stringify(episodes), {
               parser: 'json',
               plugins: [parserJson],
               printWidth: 90
@@ -75,7 +76,10 @@ const ExampleObject = (props) => {
             </Pre>
           )}
         </Highlight>
-      ))}
+      ) : null}
+      <Hidden>
+        <div id="usage" style={{ height: '3rem' }} />
+      </Hidden>
     </div>
   )
 }
