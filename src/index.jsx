@@ -5,6 +5,7 @@ import TryInterface from './components/TryInterface'
 import Header from './components/Header'
 import KeyRequest from './components/KeyRequest'
 import RouteOptions from './components/Usage'
+import TechStack from './components/TechStack'
 import ErrorReporting from './components/ErrorReporting'
 import Footer from './components/Footer'
 // import * as serviceWorker from './serviceWorker';
@@ -40,6 +41,10 @@ ReactDOM.render(
         typographySpacer={typographySpacer}
       />
       <KeyRequest
+        marginBottom={pageSpacers}
+        typographySpacer={typographySpacer}
+      />
+      <TechStack
         marginBottom={pageSpacers}
         typographySpacer={typographySpacer}
       />

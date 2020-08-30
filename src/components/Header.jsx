@@ -124,6 +124,15 @@ const Header = () => {
             className={classes.navLinks}
             variant="contained"
             color="primary"
+            href="#tech-stack"
+          >
+            Tech Stack
+          </Button>
+          <Button
+            type="button"
+            className={classes.navLinks}
+            variant="contained"
+            color="primary"
             href="#report-error"
           >
             Report Error
