@@ -1,3 +1,12 @@
+:root {
+  --white: #E8F0FF;
+  --black: #040407;
+  --light-black: #3d3d3d;
+  --red: #701013;
+  --deep-orange: #E55F25;
+  --light-orange: #ce7d47;
+}
+
 html,
 body {
   width: 100%;
@@ -9,6 +18,7 @@ body {
   line-height: 1.15em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--white)
 }
 
 h2 {
