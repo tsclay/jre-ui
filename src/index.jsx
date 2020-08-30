@@ -12,7 +12,7 @@ import Footer from './components/Footer'
 // import './styles/App.css'
 
 const centerBox = {
-  margin: '3rem auto',
+  margin: '5rem auto',
   width: '70%'
 }
 
