@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Button from '@material-ui/core/Button'
 import { makeStyles, fade } from '@material-ui/core/styles'
-import { Box } from '@material-ui/core/'
+import { Box, Menu, MenuItem, useMediaQuery } from '@material-ui/core/'
+import MenuIcon from '@material-ui/icons/Menu'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,79 +83,134 @@ const useStyles = makeStyles((theme) => ({
 
 const Header = () => {
   const classes = useStyles()
-  return (
-    <>
-      <AppBar
-        position="fixed"
-        classes={{
-          root: classes.root
-        }}
-      >
-        <Toolbar display="flex" alignItems="center">
-          <Box component="h3" flexGrow={1}>
-            JRE API
-          </Box>
-          {/* <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div> */}
-          <Button
-            type="button"
-            className={classes.navLinks}
-            variant="contained"
-            color="primary"
-            href="#usage"
-          >
-            Usage
-          </Button>
-          <Button
-            type="button"
-            className={classes.navLinks}
-            variant="contained"
-            color="primary"
-            href="#try-it"
-          >
-            Try It
-          </Button>
-          <Button
-            type="button"
-            className={classes.navLinks}
-            variant="contained"
-            color="primary"
-            href="#request-api-key"
-          >
-            Request API Key
-          </Button>
-          <Button
-            type="button"
-            className={classes.navLinks}
-            variant="contained"
-            color="primary"
-            href="#tech-stack"
-          >
-            Tech Stack
-          </Button>
-          <Button
-            type="button"
-            className={classes.navLinks}
-            variant="contained"
-            color="primary"
-            href="#report-error"
-          >
-            Report Error
-          </Button>
-        </Toolbar>
-      </AppBar>
-    </>
+  const [anchorEl, setAnchorEl] = useState(null)
+  const matches = useMediaQuery('(min-width:750px)')
+
+  const plainAnchor = { textDecoration: 'none', color: 'inherit' }
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleClose = () => {
+    setAnchorEl(null)
+  }
+
+  return matches ? (
+    <AppBar
+      position="fixed"
+      classes={{
+        root: classes.root
+      }}
+    >
+      <Toolbar display="flex" alignItems="center">
+        <Box component="h3" flexGrow={1}>
+          JRE API
+        </Box>
+        <Button
+          type="button"
+          className={classes.navLinks}
+          variant="contained"
+          color="primary"
+          href="#usage"
+        >
+          Usage
+        </Button>
+        <Button
+          type="button"
+          className={classes.navLinks}
+          variant="contained"
+          color="primary"
+          href="#try-it"
+        >
+          Try It
+        </Button>
+        <Button
+          type="button"
+          className={classes.navLinks}
+          variant="contained"
+          color="primary"
+          href="#request-api-key"
+        >
+          Request API Key
+        </Button>
+        <Button
+          type="button"
+          className={classes.navLinks}
+          variant="contained"
+          color="primary"
+          href="#tech-stack"
+        >
+          Tech Stack
+        </Button>
+        <Button
+          type="button"
+          className={classes.navLinks}
+          variant="contained"
+          color="primary"
+          href="#report-error"
+        >
+          Report Error
+        </Button>
+      </Toolbar>
+    </AppBar>
+  ) : (
+    <AppBar
+      position="fixed"
+      classes={{
+        root: classes.root
+      }}
+    >
+      <Toolbar display="flex" alignItems="center">
+        <Box component="h3" flexGrow={1}>
+          JRE API
+        </Box>
+        <Button
+          aria-controls="simple-menu"
+          aria-haspopup="true"
+          onClick={handleClick}
+        >
+          <MenuIcon />
+        </Button>
+        <Menu
+          id="simple-menu"
+          anchorEl={anchorEl}
+          keepMounted
+          open={Boolean(anchorEl)}
+          onClose={handleClose}
+        >
+          <MenuItem onClick={handleClose}>
+            <a style={plainAnchor} href="#usage">
+              Usage
+            </a>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            {' '}
+            <a style={plainAnchor} href="#try-it">
+              Try It
+            </a>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            {' '}
+            <a style={plainAnchor} href="#request-api-key">
+              Request API Key
+            </a>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            {' '}
+            <a style={plainAnchor} href="#tech-stack">
+              Tech Stack
+            </a>
+          </MenuItem>
+          <MenuItem onClick={handleClose}>
+            {' '}
+            <a style={plainAnchor} href="#report-error">
+              Report Error
+            </a>
+          </MenuItem>
+        </Menu>
+      </Toolbar>
+    </AppBar>
   )
 }
 
