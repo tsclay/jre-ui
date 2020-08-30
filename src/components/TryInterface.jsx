@@ -37,8 +37,10 @@ const TryInterface = (props) => {
       })
       .trim()
     prevUrl = url
-    await setIsLoading(false)
     await setEpisodes(prettiedData)
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 100)
   }
 
   const getQueriedData = async (e) => {
