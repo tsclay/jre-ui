@@ -96,7 +96,7 @@ const RouteOptions = (props) => {
         </code>
       </div>
       <Typography style={typographySpacer}>
-        The number of items returned is limited to 100 by default. Specify the limit explicitly to change this. The exception to this is when requesting all JRE episodes. Items are sorted by date descending order by default.
+        The number of items returned is limited to 100 by default. If you need less than that number, specify the limit explicitly. The exception to this is when requesting all JRE episodes. Items are sorted by date descending order by default.
       </Typography>
       <Typography style={typographySpacer}>
         <strong>Important:</strong> Only specify one of the Boolean properties if doing so. Specifying multiple as true will return no episodes. This is because there are no episodes marked as part of multiple types.
@@ -165,7 +165,7 @@ const RouteOptions = (props) => {
               <Typography style={{marginLeft: '1em'}} component="span">Fight Companion</Typography>
             </Box>
             <Typography className={styles.inlineCode}>
-              /api/v1/jre>isFC=true&date=desc
+              /api/v1/jre?isFC=true&date=desc
             </Typography>
           </Box>
         </AccordionSummary>
