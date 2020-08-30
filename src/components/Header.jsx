@@ -179,35 +179,21 @@ const Header = () => {
           open={Boolean(anchorEl)}
           onClose={handleClose}
         >
-          <MenuItem onClick={handleClose}>
-            <a style={plainAnchor} href="#usage">
-              Usage
-            </a>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            {' '}
-            <a style={plainAnchor} href="#try-it">
-              Try It
-            </a>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            {' '}
-            <a style={plainAnchor} href="#request-api-key">
-              Request API Key
-            </a>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            {' '}
-            <a style={plainAnchor} href="#tech-stack">
-              Tech Stack
-            </a>
-          </MenuItem>
-          <MenuItem onClick={handleClose}>
-            {' '}
-            <a style={plainAnchor} href="#report-error">
-              Report Error
-            </a>
-          </MenuItem>
+          <a style={plainAnchor} href="#usage">
+            <MenuItem onClick={handleClose}>Usage</MenuItem>
+          </a>
+          <a style={plainAnchor} href="#try-it">
+            <MenuItem onClick={handleClose}> Try It</MenuItem>
+          </a>
+          <a style={plainAnchor} href="#request-api-key">
+            <MenuItem onClick={handleClose}> Request API Key</MenuItem>
+          </a>
+          <a style={plainAnchor} href="#tech-stack">
+            <MenuItem onClick={handleClose}> Tech Stack</MenuItem>
+          </a>
+          <a style={plainAnchor} href="#report-error">
+            <MenuItem onClick={handleClose}> Report Error</MenuItem>
+          </a>
         </Menu>
       </Toolbar>
     </AppBar>
