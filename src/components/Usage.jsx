@@ -91,7 +91,7 @@ const RouteOptions = (props) => {
             </span>
             <br />
             <span style={{ display: 'block', paddingBottom: '0.25em' }}>
-              episode_id=(int &gt; 0 || null)
+              episodeID=(int &gt; 0 || null)
             </span>
             <br />
             <span style={{ display: 'block', paddingBottom: '0.25em' }}>
@@ -286,7 +286,7 @@ const RouteOptions = (props) => {
                 </Typography>
               </Box>
               <Typography className={styles.inlineCode}>
-                /api/v1/jre?episode_id=null&amp;date=desc
+                /api/v1/jre?episodeID=null&amp;date=desc
               </Typography>
             </Box>
           </AccordionSummary>
@@ -297,7 +297,7 @@ const RouteOptions = (props) => {
               such, these episodes don&apos;t come with conventional episode
               numbers, so the episode_id property is set to null. This will
               return the 10 episodes where{' '}
-              <code className="inline-code">episode_id = null</code>.
+              <code className="inline-code">episodeID = null</code>.
             </Typography>
           </AccordionDetails>
         </Accordion>
