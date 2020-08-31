@@ -126,10 +126,7 @@ const TechStack = (props) => {
                 </Typography>
                 <Typography variant="body2" style={typographySpacer}>
                   Puppeteer creates an automated instance of Chromium to visit
-                  and gather HTML content from necessary sites. If your familiar
-                  with jQuery, Cheerio is essentially jQuery on the server-side.
-                  This is used to scape the data from gather HTML/text
-                  resources.
+                  and gather HTML content from necessary sites.
                 </Typography>
                 <Typography variant="body2">
                   If your familiar with jQuery, Cheerio is essentially jQuery on
