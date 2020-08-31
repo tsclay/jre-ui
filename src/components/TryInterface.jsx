@@ -143,11 +143,11 @@ const TryInterface = (props) => {
         </Typography>
         <Typography style={typographySpacer}>
           <strong>Warning:</strong> You may call{' '}
-          <code style={inlineCode}>/api/v1/jre/all</code>, but be prepared to
-          wait. Pagination is <strong>not used</strong> in this demo, so the
-          browser may become unresponsive until the data is rendered. When
-          building your app, be sure to use some pagination method for this
-          route.
+          <code style={inlineCode}>/api/v1/jre/all</code> with your API key, but
+          be prepared to wait. Pagination is <strong>not used</strong> in this
+          demo, so the browser may become unresponsive until the data is
+          rendered. When building your app, be sure to use some pagination
+          method for this route.
         </Typography>
         <form
           onSubmit={getQueriedData}
