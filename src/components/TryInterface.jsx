@@ -141,6 +141,14 @@ const TryInterface = (props) => {
           If you have your own key, replace the value below with yours. Request
           an API Key below to get more items returned to your requests.
         </Typography>
+        <Typography style={typographySpacer}>
+          <strong>Warning:</strong> You may call{' '}
+          <code style={inlineCode}>/api/v1/jre/all</code>, but be prepared to
+          wait. Pagination is <strong>not used</strong> in this demo, so the
+          browser may become unresponsive until the data is rendered. When
+          building your app, be sure to use some pagination method for this
+          route.
+        </Typography>
         <form
           onSubmit={getQueriedData}
           style={
