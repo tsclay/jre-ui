@@ -74,7 +74,7 @@ const RouteOptions = (props) => {
         <Typography style={typographySpacer}>
           The base URL for the API is{' '}
           <span className="inline-code">
-            <code>/api/v1/jre</code>
+            <code>https://jre-api.herokuapp.com</code>
           </span>
         </Typography>
         <Typography style={typographySpacer}>
