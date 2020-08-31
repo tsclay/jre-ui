@@ -42,7 +42,7 @@ const KeyRequest = (props) => {
     e.preventDefault()
     const { name, email } = data
     try {
-      const response = await fetch('http://localhost:5000/api/v1/requestKey', {
+      const response = await fetch('/api/v1/requestKey', {
         method: 'POST',
         headers: {
           Accept: 'application/json',
