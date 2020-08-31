@@ -33,7 +33,7 @@ const TryInterface = (props) => {
   const buttonStyles = useStyles()
   const [episodes, setEpisodes] = useState('')
   const [input, setInput] = useState({
-    url: '/api/v1/jre/example',
+    url: 'https://jre-api.herokuapp.com/api/v1/jre/example',
     apiKey: 'DemoUser'
   })
   const [isLoading, setIsLoading] = useState(false)
@@ -184,7 +184,9 @@ const TryInterface = (props) => {
                 variant="filled"
                 type="text"
                 onChange={(e) => {
-                  input[e.target.id] = e.target.value
+                  input[
+                    e.target.id
+                  ] = `https://jre-api.herokuapp.com${e.target.value}`
                   setInput(input)
                 }}
               />

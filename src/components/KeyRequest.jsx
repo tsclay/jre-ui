@@ -42,17 +42,20 @@ const KeyRequest = (props) => {
     e.preventDefault()
     const { name, email } = data
     try {
-      const response = await fetch('/api/v1/requestKey', {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          name,
-          email
-        })
-      })
+      const response = await fetch(
+        'https://jre-api.herokuapp.com/api/v1/requestKey',
+        {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            name,
+            email
+          })
+        }
+      )
       const confirm = await response.json()
       await setMessage(confirm.message)
     } catch (error) {

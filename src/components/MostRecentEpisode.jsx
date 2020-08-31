@@ -10,7 +10,9 @@ const ExampleObject = () => {
   const [episodes, setEpisodes] = useState([])
 
   const fetchEpisodes = async () => {
-    const response = await fetch('/api/v1/jre/example')
+    const response = await fetch(
+      'https://jre-api.herokuapp.com/api/v1/jre/example'
+    )
     const data = await response.json()
     setEpisodes(data)
   }
