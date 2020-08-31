@@ -33,7 +33,7 @@ const TryInterface = (props) => {
   const buttonStyles = useStyles()
   const [episodes, setEpisodes] = useState('')
   const [input, setInput] = useState({
-    url: 'https://jre-api.herokuapp.com/api/v1/jre/example',
+    url: '/api/v1/jre/example',
     apiKey: 'DemoUser'
   })
   const [isLoading, setIsLoading] = useState(false)
@@ -43,7 +43,9 @@ const TryInterface = (props) => {
     const { url, apiKey } = params
     if (url === prevUrl) return
     await setIsLoading(true)
-    const response = await fetch(url, { headers: { 'X-API-KEY': apiKey } })
+    const response = await fetch(`https://jre-api.herokuapp.com${url}`, {
+      headers: { 'X-API-KEY': apiKey }
+    })
     const data = await response.json()
     const prettiedData = await prettier
       .format(JSON.stringify(data), {
@@ -184,9 +186,7 @@ const TryInterface = (props) => {
                 variant="filled"
                 type="text"
                 onChange={(e) => {
-                  input[
-                    e.target.id
-                  ] = `https://jre-api.herokuapp.com${e.target.value}`
+                  input[e.target.id] = e.target.value
                   setInput(input)
                 }}
               />
