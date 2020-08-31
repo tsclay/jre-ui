@@ -7,7 +7,8 @@ import {
   InputLabel,
   Typography,
   Collapse,
-  Hidden
+  Hidden,
+  useMediaQuery
 } from '@material-ui/core'
 import { fade, makeStyles } from '@material-ui/core/styles'
 import Alert from '@material-ui/lab/Alert'
@@ -26,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
 const KeyRequest = (props) => {
   const { marginBottom, typographySpacer } = props
   const formSpacing = { marginBottom: '1.15rem' }
+  const matches = useMediaQuery('(min-width:750px)')
   const buttonStyles = useStyles()
   const [data, setData] = useState({})
   const [message, setMessage] = useState('')
@@ -76,7 +78,11 @@ const KeyRequest = (props) => {
           keymaster.jre.api@gmail.com for an API Key.
         </Typography>
         <form
-          style={{ width: '80%', margin: '0 auto' }}
+          style={
+            matches
+              ? { width: '80%', margin: '0 auto' }
+              : { width: '100%', margin: '0 auto' }
+          }
           onSubmit={handleSubmit}
         >
           <fieldset style={{ padding: '1rem' }}>

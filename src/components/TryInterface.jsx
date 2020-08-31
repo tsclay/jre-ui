@@ -10,7 +10,8 @@ import {
   Box,
   Button,
   CircularProgress,
-  Hidden
+  Hidden,
+  useMediaQuery
 } from '@material-ui/core'
 import { fade, makeStyles } from '@material-ui/core/styles'
 
@@ -28,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const TryInterface = (props) => {
+  const matches = useMediaQuery('(min-width: 750px)')
   const buttonStyles = useStyles()
   const [episodes, setEpisodes] = useState('')
   const [input, setInput] = useState({
@@ -62,15 +64,36 @@ const TryInterface = (props) => {
     await fetchEpisodes(input)
   }
 
-  const Pre = styled.pre`
-    text-align: left;
-    margin: 1em auto;
-    padding: 0.5em;
-    overflow: scroll;
-    width: 80%;
-    height: 240px;
-    overflow: auto;
-  `
+  const blankTerminal = {
+    display: 'flex',
+    margin: '1em auto',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: 'Anonymous Pro, monospace',
+    minHeight: '240px',
+    color: 'rgb(214, 222, 235)',
+    backgroundColor: 'rgb(1, 22, 39)'
+  }
+
+  const Pre = matches
+    ? styled.pre`
+        text-align: left;
+        margin: 1em auto;
+        padding: 0.5em;
+        overflow: scroll;
+        width: 80%;
+        height: 240px;
+        overflow: auto;
+      `
+    : styled.pre`
+        text-align: left;
+        margin: 1em auto;
+        padding: 0.5em;
+        overflow: scroll;
+        width: 100%;
+        height: 240px;
+        overflow: auto;
+      `
 
   const Line = styled.div`
     display: table-row;
@@ -117,7 +140,11 @@ A demo key is used below; only 1 data item will be returned by
         </Typography>
         <form
           onSubmit={getQueriedData}
-          style={{ width: '80%', margin: '0 auto 2em auto' }}
+          style={
+            matches
+              ? { width: '80%', margin: '0 auto 2rem auto' }
+              : { width: '100%', margin: '0 auto 2rem auto' }
+          }
         >
           <fieldset style={{ padding: '1rem' }}>
             <Box
@@ -172,24 +199,7 @@ A demo key is used below; only 1 data item will be returned by
             </Button>
           </fieldset>
         </form>
-
-        {isLoading ? (
-          <div
-            style={{
-              display: 'flex',
-              margin: '1em auto',
-              width: '80%',
-              justifyContent: 'center',
-              alignItems: 'center',
-              fontFamily: 'Anonymous Pro, monospace',
-              minHeight: '240px',
-              color: 'rgb(214, 222, 235)',
-              backgroundColor: 'rgb(1, 22, 39)'
-            }}
-          >
-            <CircularProgress />
-          </div>
-        ) : episodes.length > 0 ? (
+        {episodes.length > 0 ? (
           <Highlight
             {...defaultProps}
             theme={theme}
@@ -213,19 +223,13 @@ A demo key is used below; only 1 data item will be returned by
           </Highlight>
         ) : (
           <div
-            style={{
-              display: 'flex',
-              width: '80%',
-              margin: '1em auto',
-              justifyContent: 'center',
-              alignItems: 'center',
-              fontFamily: 'Anonymous Pro, monospace',
-              minHeight: '240px',
-              color: 'rgb(214, 222, 235)',
-              backgroundColor: 'rgb(1, 22, 39)'
-            }}
+            style={
+              matches
+                ? { ...blankTerminal, width: '80%' }
+                : { ...blankTerminal, width: '100%' }
+            }
           >
-            Awaiting your request.
+            {isLoading ? <CircularProgress /> : 'Awaiting your request.'}
           </div>
         )}
       </div>
