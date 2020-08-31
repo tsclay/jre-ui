@@ -37,7 +37,7 @@ const TryInterface = (props) => {
     apiKey: 'DemoUser'
   })
   const [isLoading, setIsLoading] = useState(false)
-  const { marginBottom, typographySpacer } = props
+  const { typographySpacer } = props
 
   const fetchEpisodes = async (params) => {
     const { url, apiKey } = params
@@ -130,10 +130,9 @@ const TryInterface = (props) => {
           <Typography component="span" style={inlineCode.inlineCode}>
             X-API-KEY
           </Typography>
-          {'. '}
-A demo key is used below; only 1 data item will be returned by
+          {'. '}A demo key is used below; only 1 data item will be returned by
           each request with the demo key.
-</Typography>
+        </Typography>
         <Typography style={typographySpacer}>
           If you have your own key, replace the value below with yours. Request
           an API Key below to get more items returned to your requests.

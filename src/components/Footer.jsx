@@ -32,10 +32,8 @@ const Footer = () => {
           rel="noopener noreferrer"
         >
           JRE Podcast website
-        </a>
-{' '}
-        and at the
-{' '}
+        </a>{' '}
+        and at the{' '}
         <a
           href="https://www.youtube.com/user/PowerfulJRE"
           target="_blank"

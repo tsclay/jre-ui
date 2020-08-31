@@ -6,9 +6,8 @@ import styled from 'styled-components'
 import theme from 'prism-react-renderer/themes/nightOwl'
 import { Hidden } from '@material-ui/core'
 
-const ExampleObject = (props) => {
+const ExampleObject = () => {
   const [episodes, setEpisodes] = useState([])
-  const { marginBottom } = props
 
   const fetchEpisodes = async () => {
     const response = await fetch('/api/v1/jre/example')

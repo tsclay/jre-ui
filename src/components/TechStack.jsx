@@ -48,7 +48,7 @@ const AccordionDetails = withStyles((theme) => ({
 }))(MuiAccordionDetails)
 
 const TechStack = (props) => {
-  const { marginBottom, typographySpacer } = props
+  const { typographySpacer } = props
   const [expanded, setExpanded] = useState('')
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -138,8 +138,7 @@ const TechStack = (props) => {
           </Accordion>
         </Box>
         <Typography style={typographySpacer}>
-          See the back-end code
-{' '}
+          See the back-end code{' '}
           <a
             href="https://github.com/tsclay/JRE-API"
             target="_blank"

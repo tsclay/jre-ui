@@ -58,7 +58,7 @@ const useStyles = makeStyles({
 })
 
 const RouteOptions = (props) => {
-  const { marginBottom, typographySpacer } = props
+  const { typographySpacer } = props
   const styles = useStyles()
   const matches = useMediaQuery('(min-width:750px)')
   const [expanded, setExpanded] = useState('panel5')

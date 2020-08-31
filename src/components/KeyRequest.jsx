@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const KeyRequest = (props) => {
-  const { marginBottom, typographySpacer } = props
+  const { typographySpacer } = props
   const formSpacing = { marginBottom: '1.15rem' }
   const matches = useMediaQuery('(min-width:750px)')
   const buttonStyles = useStyles()
@@ -59,7 +59,6 @@ const KeyRequest = (props) => {
       await setMessage(
         'Unknown error. Please contact keymaster.jre.api@gmail.com.'
       )
-      console.log(error)
     } finally {
       setOpen(true)
     }

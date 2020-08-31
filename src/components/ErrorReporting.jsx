@@ -10,8 +10,7 @@ const ErrorReporting = (props) => {
         Found a bug or notice incorrect data?
       </Typography>
       <Typography style={typographySpacer}>
-        Submit an issue
-{' '}
+        Submit an issue{' '}
         <a href="https://github.com/tsclay/JRE-API/issues">here</a>.
       </Typography>
       <Typography style={typographySpacer}>
