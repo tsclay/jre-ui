@@ -1,6 +1,6 @@
 # Website for JRE API
 
-Visit the site [here](https://jre-ui.vercel.app/).
+Visit the site [here](https://jre-api.vercel.app/).
 
 Built with React/Material-UI
 
