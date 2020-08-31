@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import ExampleObject from './components/ExampleObject'
+import ExampleObject from './components/MostRecentEpisode'
 import TryInterface from './components/TryInterface'
 import Header from './components/Header'
 import KeyRequest from './components/KeyRequest'
