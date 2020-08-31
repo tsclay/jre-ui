@@ -41,8 +41,6 @@ const TryInterface = (props) => {
 
   const fetchEpisodes = async (params) => {
     const { url, apiKey } = params
-    if (url === prevUrl) return
-    await setIsLoading(true)
     const response = await fetch(`https://jre-api.herokuapp.com${url}`, {
       headers: { 'X-API-KEY': apiKey }
     })
@@ -63,6 +61,7 @@ const TryInterface = (props) => {
 
   const getQueriedData = async (e) => {
     await e.preventDefault()
+    await setIsLoading(true)
     await fetchEpisodes(input)
   }
 
